@@ -1,0 +1,48 @@
+﻿@page
+@model WebAppMysql.Pages.Pets.IndexModel
+@{
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col">Pet List Data</div>
+            <div class="col">
+                <a href="/Pets/AddNewPet" class="btn btn-success btn-sm float-end">Add</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+
+                <tr>
+                    <th>Pet Name</th>
+                    <th>Pet Owner</th>
+                    <th>Email Address</th>
+                    <th>Species</th>
+                    <th>Sex</th>
+                    <th>Birth</th>
+                    <th>Action</th>
+                </tr>
+                <tbody>
+                    @foreach (var element in Model.petList) {
+                        <tr>
+                            <td>@element.name</td>
+                            <td>@element.owner</td>
+                            <td>@element.email</td>
+                            <td>@element.species</td>
+                            <td>@element.sex</td>
+                            <td>@element.birth</td>
+                            <td>
+                                <a href="/Pets/Edit?id=@element.id" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="Pets/Delete?id=@element.id" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+               
+            </table>
+        </div>
+    </div>
+</div>

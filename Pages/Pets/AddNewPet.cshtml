@@ -1,0 +1,99 @@
+﻿@page
+@model WebAppMysql.Pages.Pets.AddNewPetModel
+@{
+}
+
+<br />
+<h2>New Pet</h2>
+
+<div class="container">
+    <a href="/logout" class="btn btn-primary btn-sm float-end">Log out</a>
+    <h1 class="text-center mt-3 mb-3">Pet Registration Form</h1>
+    @if (Model.errorMessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>@Model.errorMessage</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.successMessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>@Model.successMessage</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="card">
+        <div class="card-header">Pet Registration Form</div>
+        <div class="card-body">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>Pet Name</label>
+                            <input type="text" name="name" id="name" class="form-control" value="@Model.petInfo.name" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>Owner Name</label>
+                            <input type="text" name="owner" id="owner" class="form-control" value="@Model.petInfo.owner" required/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>Email Address</label>
+                            <input type="text" name="email" id="email" class="form-control" value="@Model.petInfo.email" required/>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>Species</label>
+                            <input type="text" name="species" id="species" class="form-control" value="@Model.petInfo.species" required/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>Sex</label>
+                            <input type="text" name="sex" id="sex" class="form-control" value="@Model.petInfo.sex" required/>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label>Birth Date</label>
+                            <input type="date" name="birth" id="birth" class="form-control" value="@Model.petInfo.birth" required/>
+                        </div>
+                    </div>
+                </div>
+
+                @*@if (Model.successMessage.Length > 0)
+                    {
+                        <div class="row mb-3">
+                            <div class="col-sm-9">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>@Model.successMessage</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    }*@
+
+                <div class="mb-3">
+                    <input type="submit" name="submit_button" class="btn btn-primary" value="Add" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
