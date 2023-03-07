@@ -1,0 +1,35 @@
+﻿@page
+@using MySqlConnector;
+@{
+    try
+    {
+        string id = Request.Query["id"];
+        //Console.WriteLine(id);
+        DotNetEnv.Env.Load();
+        var password = Environment.GetEnvironmentVariable("PASSWORD");
+        var server = Environment.GetEnvironmentVariable("SERVER");
+        var user = Environment.GetEnvironmentVariable("USER");
+        var database = Environment.GetEnvironmentVariable("DATABASE");
+        String connectionString = $"server={server};user={user};password={password};database={database};Allow User Variables=True";
+        using (MySqlConnection connection = new MySqlConnection(connectionString))
+        {
+            connection.Open();
+            Console.WriteLine("Successfully connected !!!");
+            string query = "DELETE FROM Pets WHERE pet_id=@id";
+            using (MySqlCommand command = new MySqlCommand(query, connection))
+            {
+                Int16 tmp = Convert.ToInt16(id);
+                command.Parameters.AddWithValue("@id", tmp);
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+
+        Console.WriteLine(ex.Message);
+    }
+    Response.Redirect("/Pets");
+
+    }
+
