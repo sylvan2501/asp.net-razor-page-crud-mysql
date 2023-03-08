@@ -1,0 +1,35 @@
+﻿@page
+@model WebAppMysql.Pages.Account.LoginModel
+@{
+}
+
+<title>Pet Management System - Login System</title>
+<div class="container">
+    <h1 class="mt-5 mb-5 text-center text-primary"><b>Pet Management System - Login System</b></h1>
+    <div class="col-md-3">&nbsp;</div>
+    <div class="col-md-6">
+
+        <div class="card">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <div class="mb-3">
+                        <label asp-for="credential.UserName">User Name</label>
+                        <input type="text" asp-for="credential.UserName" class="form-control" />
+                    </div>
+                    <span class="text-danger" asp-validation-for="credential.UserName"></span>
+                    <div class="mb-3">
+                        <label asp-for="credential.Password">Password</label>
+                        <input type="password" asp-for="credential.Password" class="form-control" />
+                    </div>
+                    <span class="text-danger" asp-validation-for="credential.Password"></span>
+                    <div class="mb-3">
+                        <input type="submit" class="btn btn-primary" value="Login" />
+                    </div>
+                    <a href="/register">Do not have an account ? Sign Up</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
