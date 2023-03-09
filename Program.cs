@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using MySqlConnector;
+using WebAppMysql.Pages.CustomAuthorization;
+using static WebAppMysql.Pages.CustomAuthorization.FreeTrialExperienceRequirement;
+
 var builder = WebApplication.CreateBuilder(args);
 
 //register database connection
@@ -9,14 +13,23 @@ builder.Services.AddTransient<MySqlConnection>(_ => new MySqlConnection(builder.
 builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options =>
 {
     options.Cookie.Name = "MyCookieAuth";
+    options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/AccessDenied";
+
+});
+builder.Services.AddAuthorization(options => {
+    // examples of simple-policy-based autorization
+    options.AddPolicy("MustBeAnOwner", policy => policy.RequireClaim("Identity", "Owner"));
+    options.AddPolicy("MustBeAuthenticated", policy => policy.RequireClaim("Identity", "Authenticated"));
+    //a custom-policy-based authorization 
+    options.AddPolicy("PlaygroundOnly", policy => policy.
+    RequireClaim("Identity", "Owner").RequireClaim("Owner").Requirements.Add(new FreeTrialExperienceRequirement(3)));
 
 });
 
+builder.Services.AddSingleton<IAuthorizationHandler, FreeTrialExperienceRequirementHandler>();
 //builder.Services.AddAuthentication().AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, OptionsBuilderConfigurationExtensions =>
 //{
-
-
-
 //});
 
 

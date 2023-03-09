@@ -71,11 +71,17 @@ namespace WebAppMysql.Pages.Account
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, "admin"),
-                    new Claim(ClaimTypes.Email, "admin@email.com")
+                    new Claim(ClaimTypes.Email, "admin@email.com"),
+                    new Claim("Identity","Owner"),
+                    new Claim("Identity","Authenticated"),
+                    new Claim("Owner", "true"),
+                    new Claim("FreeTrialStartDate", "2023-03-01")
                 };
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+
+                TempData["Success"] = "Success";
                 return RedirectToPage("/Index");
             }
             return Page();

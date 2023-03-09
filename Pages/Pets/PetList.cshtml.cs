@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySqlConnector;
 using Microsoft.Extensions.Configuration;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
+
 namespace WebAppMysql.Pages.Pets
 {
-	public class IndexModel : PageModel
+
+    [Authorize(Policy = "MustBeAuthenticated")]
+    public class PetListModel : PageModel
     {
-        
         public List<PetInfo> petList = new List<PetInfo>();
         public void OnGet()
         {
