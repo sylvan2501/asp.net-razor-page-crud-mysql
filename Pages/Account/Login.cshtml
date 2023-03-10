@@ -25,6 +25,10 @@
                     </div>
                     <span class="text-danger" asp-validation-for="credential.Password"></span>
                     <div class="mb-3">
+                        <input type="checkbox" asp-for="credential.RememberMe" class="form-check-input"/>
+                        <label class="form-check-label" asp-for="credential.RememberMe"></label>
+                    </div>
+                    <div class="mb-3">
                         <input type="submit" class="btn btn-primary" value="Login" />
                     </div>
                     <a href="/register">Do not have an account ? Sign Up</a>

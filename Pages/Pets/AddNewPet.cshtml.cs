@@ -74,7 +74,7 @@ namespace WebAppMysql.Pages.Pets
             //clear the fields of petInfo by creating a new object instance
             petInfo = new PetInfo();
             successMessage = "The record is successfully saved!";
-            Response.Redirect("/Pets");
+            Response.Redirect("/Index");
             //ModelState.Clear();
         }
 

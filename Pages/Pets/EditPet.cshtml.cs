@@ -99,7 +99,7 @@ namespace WebAppMysql.Pages.Pets
                 //Console.WriteLine(errorMessage);
                 return;
             }
-            Response.Redirect("/Pets");
+            Response.Redirect("/Index");
         }
     }
 }
